@@ -77,3 +77,22 @@ For large objects, again `SSD-MobilNet-V1-FPN` performs the best with `mAP@[IoU=
 All the models were trained for 2000 steps using a momentum optimizer. `Faster-RCNN ResNet50` was the hardest to train so a larger instance had to be employed, the details of which can be found in the relevant [notebook](https://github.com/SubMishMar/object_detection/blob/main/1_model_training/1_train_model_faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.ipynb). The batch size was 8 for all models except for `Faster-RCNN ResNet50` which had a batch size of 4 to be able to be trained in the available compute within reasonable time.
 
 In my opinion, different models would require different solver options, batch sizes, kinds of solvers, to perform the best. However, in the current instance, with the solver parameters kept fixed (except for a different batch size for `FasterRCNN-ResNet50`), `SSD-MobileNet-V1-FPN`, has the best object detection metrics.
+
+## Update
+I trained FasterRCNN-ResNet50 with a larger batch size 0f 8, and I get the following performance:
+```
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.169
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.348
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.147
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.071
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.434
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.650
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.038
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.166
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.230
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.130
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.528
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.709
+```
+The final conclusion would be: keeping all things constant, the overall performance of `SSD-MobileNet-V1-FPN` is still better, but the `FasterRCNN-ResNet50` does exhibit better mAP for large objects when compared against all other models. 
+[![Video for Faster RCNN Resnet 50 with batchsize=8](https://img.youtube.com/vi/shorts/Bwx1MxeHhAc/default.jpg)](https://www.youtube.com/shorts/Bwx1MxeHhAc)
