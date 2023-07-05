@@ -94,5 +94,5 @@ I trained FasterRCNN-ResNet50 with a larger batch size 0f 8, and I get the follo
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.528
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.709
 ```
-The final conclusion would be: keeping all things constant, the overall performance of `SSD-MobileNet-V1-FPN` is still better, but the `FasterRCNN-ResNet50` does exhibit better mAP for large objects when compared against all other models. 
+The final conclusion would be: keeping all things constant, the overall performance of `SSD-MobileNet-V1-FPN` is still better, but the `FasterRCNN-ResNet50` does exhibit better mAP for large objects when compared against all other models (when trained using a batch size of 8 instead of 4 in the previous experiments). 
 [![Video for Faster RCNN Resnet 50 with batchsize=8](https://img.youtube.com/vi/shorts/Bwx1MxeHhAc/default.jpg)](https://www.youtube.com/shorts/Bwx1MxeHhAc)
